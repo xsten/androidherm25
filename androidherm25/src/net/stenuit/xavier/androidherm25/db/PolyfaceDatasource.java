@@ -19,5 +19,10 @@ public class PolyfaceDatasource {
 
 	public void close() {
 		dbHelper.close();
+		database=null;
+	}
+
+	public SQLiteDatabase getDatabase() {
+		return database;
 	}
 }
