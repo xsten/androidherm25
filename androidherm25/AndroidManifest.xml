@@ -22,6 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="net.stenuit.xavier.androidherm25.UserAliasesActivity"
+            android:label="@string/title_activity_user_aliases"
+            android:parentActivityName="net.stenuit.xavier.androidherm25.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="net.stenuit.xavier.androidherm25.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

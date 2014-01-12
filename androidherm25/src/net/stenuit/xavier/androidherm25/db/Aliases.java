@@ -1,8 +1,15 @@
 package net.stenuit.xavier.androidherm25.db;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Aliases {
+	@Override
+	public String toString() {
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+		// TODO Auto-generated method stub
+		return alias+"("+sdf.format(validFrom)+"-"+sdf.format(validUntil)+")";
+	}
 	private int idAliases;
 	private String unixUser;
 	private String email;

@@ -2,10 +2,11 @@ package net.stenuit.xavier.androidherm25;
 
 import net.stenuit.xavier.androidherm25.db.PolyfaceDatasource;
 import net.stenuit.xavier.androidherm25.db.RegisteredUser;
-import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -18,7 +19,8 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	private static final String TAG="androidherm25";
 	private PolyfaceDatasource datasource;
 	Cursor cursor;
-	
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,7 +31,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		
 		SQLiteDatabase database=datasource.getDatabase();
 		final String[] columns=new String[]{"Surname","FirstName","ForwardMail"};
-		final int[] toViews={R.id.textView1,R.id.textView2,R.id.textView3};
+		final int[] toViews={R.id.userNameTextView,R.id.textView2,R.id.textView3};
 		String qry="select idRegisteredUsers as _id";
 		for(String c:columns) qry+=","+c;
 		qry+=" from RegisteredUsers order by Surname COLLATE NOCASE";
@@ -72,6 +74,10 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		{
 			RegisteredUser ru=datasource.getRegisteredUser(arg3);
 			Log.i(TAG,"RegisteredUser="+ru);
+			
+			Intent intent=new Intent(this, UserAliasesActivity.class);
+			intent.putExtra("registeredUser", (long)ru.getIdRegisteredUser());
+			startActivity(intent);
 		}
 	}
 
